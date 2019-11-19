@@ -20,13 +20,19 @@
     },
     "dependencies": {
         "acorn": "^7.1.0",
+        "axios": "^0.19.0",
         "body-parser": "^1.19.0",
         "compression": "^1.7.4",
         "errorhandler": "^1.5.1",
         "express": "^4.17.1",
+        "inversify": "^5.0.1",
+        "inversify-binding-decorators": "^4.0.0",
+        "inversify-express-utils": "^6.3.2",
+        "reflect-metadata": "^0.1.13",
         "winston": "^3.2.1"
     },
     "devDependencies": {
+        "@types/axios": "^0.14.0",
         "@types/body-parser": "^1.17.1",
         "@types/compression": "^1.0.1",
         "@types/concurrently": "^4.1.0",

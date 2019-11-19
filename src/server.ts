@@ -1,15 +1,10 @@
-import app from "./app/bootstrap/app";
+import "reflect-metadata";
+import {App} from "./app/bootstrap/app";
+import {InversifyExpressServer} from "inversify-express-utils";
+import {Container} from "inversify";
 
-/**
- * Start Express server.
- */
-const server = app.listen(app.get("port"), () => {
-    console.log(
-        "  App is running at http://localhost:%d in %s mode",
-        app.get("port"),
-        app.get("env")
-    );
-    console.log("  Press CTRL-C to stop\n");
-});
+const container = new Container();
+const server = new InversifyExpressServer(container);
 
-export default server;
+const app = new App(container, server);
+app.serve(Number(process.env.PORT) || 3000);
