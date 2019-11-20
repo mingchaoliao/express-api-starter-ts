@@ -1,12 +1,12 @@
 import express from "express";
-import compression from "compression";  // compresses requests
+import compression from "compression"; // compresses requests
 import bodyParser from "body-parser";
 import errorHandler from "errorhandler";
 import {interfaces} from "inversify";
-import Container = interfaces.Container;
 import {InversifyExpressServer} from "inversify-express-utils";
 
 import '../controllers/welcome-controller'
+import Container = interfaces.Container;
 
 export class App {
     private container: Container;
@@ -29,6 +29,19 @@ export class App {
                     console.log('Middleware: errorHandler is enabled');
                     app.use(errorHandler());
                 }
+            })
+            .setErrorConfig((app: express.Application) => {
+                app.use((req: express.Request, res: express.Response) => {
+                    res.status(404).json({
+                        message: `undefined route: ${req.method} ${req.path}`
+                    });
+                });
+
+                app.use(function (err: Error, req: express.Request, res: express.Response, next: express.NextFunction) {
+                    res.status(500).json({
+                        message: err.message
+                    });
+                });
             })
             .build()
             .listen(port, () => {

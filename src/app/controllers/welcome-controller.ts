@@ -7,7 +7,7 @@ class WelcomeController extends BaseHttpController {
     async welcome() {
         const res: AxiosResponse = await axios.get("https://api.ipify.org?format=json");
         return this.json({
-            message: "welcome",
+            message: "Hello World!",
             ip: res.data.ip
         });
     }
