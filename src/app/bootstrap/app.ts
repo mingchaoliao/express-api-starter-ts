@@ -3,23 +3,29 @@ import compression from "compression"; // compresses requests
 import bodyParser from "body-parser";
 import errorHandler from "errorhandler";
 import {interfaces} from "inversify";
+import '../controllers'
 import {InversifyExpressServer} from "inversify-express-utils";
-
-import '../controllers/welcome-controller'
-import Container = interfaces.Container;
+import {ServiceProvider} from "../service-provider";
 
 export class App {
-    private container: Container;
-    private server: InversifyExpressServer;
 
-    constructor(container: interfaces.Container, server: InversifyExpressServer) {
+    constructor(
+        private container: interfaces.Container,
+        private server: InversifyExpressServer,
+        private serviceProvider: ServiceProvider
+    ) {
         this.container = container;
         this.server = server;
+        this.serviceProvider = serviceProvider
     }
 
     serve(port: number): void {
+        this.serviceProvider.register();
+
         this.server
             .setConfig((app: express.Application) => {
+                this.container.bind('app').toConstantValue(app);
+
                 app.use(compression());
                 app.use(bodyParser.json());
 
