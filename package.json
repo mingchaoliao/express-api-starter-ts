@@ -28,7 +28,9 @@
         "inversify": "^5.0.1",
         "inversify-binding-decorators": "^4.0.0",
         "inversify-express-utils": "^6.3.2",
+        "mysql2": "^2.0.1",
         "reflect-metadata": "^0.1.13",
+        "typeorm": "^0.2.20",
         "winston": "^3.2.1"
     },
     "devDependencies": {
