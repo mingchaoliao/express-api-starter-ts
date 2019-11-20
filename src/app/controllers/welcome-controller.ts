@@ -1,18 +1,18 @@
 import {BaseHttpController, controller, httpGet} from "inversify-express-utils";
-import {AxiosResponse, AxiosStatic} from "axios";
-import {inject} from "inversify";
+import {AxiosResponse} from "axios";
 import {Environment} from "../environment";
+import {HttpClient} from "../../infrastructure/util/http-client";
 
 @controller("/")
 class WelcomeController extends BaseHttpController {
-    constructor(@inject("axios") private axios: AxiosStatic, private env: Environment) {
+    constructor(private http: HttpClient, private env: Environment) {
         super();
-        this.axios = axios;
+        this.http = http;
     }
 
     @httpGet("/")
     async welcome() {
-        const res: AxiosResponse = await this.axios.get("https://api.ipify.org?format=json");
+        const res: AxiosResponse = await this.http.get("https://api.ipify.org?format=json");
         return this.json({
             message: "Hello World!",
             ip: res.data.ip,
