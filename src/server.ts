@@ -2,7 +2,7 @@ import "reflect-metadata";
 import {App} from "./app/bootstrap/app";
 import {InversifyExpressServer} from "inversify-express-utils";
 import {Container} from "inversify";
-import {ServiceProvider} from './app/service-provider';
+import {ServiceProvider} from "./app/service-provider";
 
 const container = new Container();
 const server = new InversifyExpressServer(container);

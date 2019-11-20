@@ -1,1 +1,1 @@
-import './welcome-controller'
+import "./welcome-controller";

@@ -3,7 +3,7 @@ import compression from "compression"; // compresses requests
 import bodyParser from "body-parser";
 import errorHandler from "errorhandler";
 import {interfaces} from "inversify";
-import '../controllers'
+import "../controllers";
 import {InversifyExpressServer} from "inversify-express-utils";
 import {ServiceProvider} from "../service-provider";
 
@@ -16,7 +16,7 @@ export class App {
     ) {
         this.container = container;
         this.server = server;
-        this.serviceProvider = serviceProvider
+        this.serviceProvider = serviceProvider;
     }
 
     serve(port: number): void {
@@ -24,15 +24,15 @@ export class App {
 
         this.server
             .setConfig((app: express.Application) => {
-                this.container.bind('app').toConstantValue(app);
+                this.container.bind("app").toConstantValue(app);
 
                 app.use(compression());
                 app.use(bodyParser.json());
 
-                console.log(`Configured in ${app.get('env')} mode`);
+                console.log(`Configured in ${app.get("env")} mode`);
 
                 if (process.env.APP_ENV !== "production") {
-                    console.log('Middleware: errorHandler is enabled');
+                    console.log("Middleware: errorHandler is enabled");
                     app.use(errorHandler());
                 }
             })

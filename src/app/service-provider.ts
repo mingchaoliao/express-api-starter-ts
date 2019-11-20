@@ -1,5 +1,6 @@
 import {interfaces} from "inversify";
-import axios from 'axios';
+import axios from "axios";
+import {Environment} from "./environment";
 import Container = interfaces.Container;
 
 export class ServiceProvider {
@@ -8,6 +9,7 @@ export class ServiceProvider {
     }
 
     register() {
-        this.container.bind('axios').toConstantValue(axios);
+        this.container.bind("axios").toConstantValue(axios);
+        this.container.bind<Environment>(Environment).toConstantValue(new Environment(process.env));
     }
 }

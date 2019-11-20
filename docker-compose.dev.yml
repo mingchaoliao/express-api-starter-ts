@@ -1,0 +1,25 @@
+version: '3.2'
+
+services:
+  api:
+    image: node:alpine
+    volumes:
+      - .:/api
+    working_dir: /api
+    environment:
+      APP_ENV: local
+    ports:
+      - 3000:3000
+    command:
+      - npm
+      - start
+  mysql:
+    image: mysql:5.7.22
+    command: --disable-partition-engine-check
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+volumes:
+  mysql_data:
+    driver: local
