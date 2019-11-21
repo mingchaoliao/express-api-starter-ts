@@ -1,9 +1,9 @@
 export class Environment {
-    readonly LOG_LEVEL = 'APP_LOG_LEVEL';
-    readonly PROD_LOG_DEFAULT_LEVEL = 'error';
-    readonly NON_PROD_LOG_DEFAULT_LEVEL = 'debug';
-    readonly ENV = 'APP_ENV';
-    readonly PRODUCTION = 'production';
+    readonly LOG_LEVEL = "APP_LOG_LEVEL";
+    readonly PROD_LOG_DEFAULT_LEVEL = "error";
+    readonly NON_PROD_LOG_DEFAULT_LEVEL = "debug";
+    readonly ENV = "APP_ENV";
+    readonly PRODUCTION = "production";
 
     constructor(private readonly env: NodeJS.ProcessEnv) {
         this.env = env;
