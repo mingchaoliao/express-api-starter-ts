@@ -13,10 +13,10 @@ class WelcomeController extends BaseHttpController {
     @httpGet("/")
     async welcome() {
         const res: AxiosResponse = await this.http.get("https://api.ipify.org?format=json");
-        this.logger.resolve().info('get ip from ipify.org', res.data);
+        this.logger.resolve().info("get ip from ipify.org", res.data);
         return this.json({
             message: "Hello World!",
-            ip: res.data.ip,
+            serverIP: res.data.ip,
             environment: this.env.get("APP_ENV")
         });
     }
