@@ -16,7 +16,7 @@ class WelcomeController extends BaseHttpController {
         this.logger.resolve().info("get ip from ipify.org", res.data);
         return this.json({
             message: "Hello World!",
-            ip: res.data.ip,
+            serverIP: res.data.ip,
             environment: this.env.get("APP_ENV")
         });
     }
