@@ -8,12 +8,16 @@ services:
     working_dir: /api
     environment:
       APP_ENV: local
-      DB_CONNECTION: mysql
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_HOST: mysql
-      DB_PORT: 3306
-      DB_DATABASE: api-db
+      TYPEORM_CONNECTION: mysql
+      TYPEORM_HOST: mysql
+      TYPEORM_USERNAME: root
+      TYPEORM_PASSWORD: root
+      TYPEORM_DATABASE: api-db
+      TYPEORM_PORT: 3306
+
+      TYPEORM_ENTITIES: dist/infrastructure/persistence/typeorm/entities/**/*.js
+      TYPEORM_MIGRATIONS_TABLE_NAME: migrations
+      TYPEORM_MIGRATIONS: dist/infrastructure/persistence/typeorm/migrations/**/*.js
     depends_on:
       - mysql
     ports:

@@ -8,3 +8,4 @@ tests/coverage/*
 /src/public/
 # custom definition files
 /src/types/
+gulpfile.js
